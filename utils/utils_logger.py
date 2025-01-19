@@ -23,7 +23,7 @@ CURRENT_SCRIPT = pathlib.Path(__file__).stem
 LOG_FOLDER: pathlib.Path = pathlib.Path("logs")
 
 # Set the name of the log file
-LOG_FILE: pathlib.Path = LOG_FOLDER.joinpath("project_log.log")
+LOG_FILE: pathlib.Path = LOG_FOLDER.joinpath("Jballard_log.log")
 
 # Ensure the log folder exists or create it
 try:
