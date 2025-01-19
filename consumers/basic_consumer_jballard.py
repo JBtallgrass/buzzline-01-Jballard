@@ -52,15 +52,16 @@ def process_message(log_file) -> None:
             print(f"Consumed log message: {message}")
 
             # monitor and alert on special conditions
-            if "I just loved a movie! It was funny." in message:
-                print(f"ALERT: The special message was found! \n{message}")
-                logger.warning(f"ALERT: The special message was found! \n{message}")
+            keywords = ["Colorado", "flyfishing", "hiking", "wildlife encounter", "backpacking", "snowshoeing"]
 
+            for keyword in keywords:
+             if keyword in message:
+              print(f"ALERT: The keyword '{keyword}' was found! \n{message}")
+             logger.warning(f"ALERT: The keyword '{keyword}' was found! \n{message}")
 
 #####################################
 # Define main function for this script.
 #####################################
-
 
 def main() -> None:
     """Main entry point."""
