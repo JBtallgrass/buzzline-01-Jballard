@@ -48,7 +48,7 @@ def get_message_interval() -> int:
     To use handy functions like this, import the os module 
     from the Python Standard Library (see above).
     """
-    return_value: str = os.getenv("MESSAGE_INTERVAL_SECONDS", 5)
+    return_value: str = os.getenv("MESSAGE_INTERVAL_SECONDS", "5")
     interval: int = int(return_value)
     logger.info(f"Messages will be sent every {interval} seconds.")
     return interval
