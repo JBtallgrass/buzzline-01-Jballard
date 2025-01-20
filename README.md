@@ -73,7 +73,8 @@ keywords = ["Colorado", "flyfishing", "hiking", "wildlife encounter", "backpacki
 ALERT: The keyword was found in message!
 ```
 Note: here is how I adjusted the Alert Messaging:
-[README.md ADD](C:\Users\balla\Projects\buzzline-01-jballard\alert_msg_update.md)
+[Alert Message Update](alert_msg_update.md)
+
 
 ## Customization Highlights
 My personal preferences for outdoor activities inspire this project and explores real-time analytics through the lens of streaming data. 
