@@ -46,18 +46,28 @@ def process_message(log_file) -> None:
                 # Keep checking for new log entries
                 continue
 
-            # We got a new log entry!
+           # We got a new log entry!
             # Remove any leading/trailing white space and log the message
             message = line.strip()
             print(f"Consumed log message: {message}")
 
-            # monitor and alert on special conditions
-            keywords = ["Colorado", "flyfishing", "hiking", "wildlife encounter", "backpacking", "snowshoeing"]
+            # Skip processing if this is an ALERT message (prevents feedback loop)
+            if "ALERT: Found Colorado" in message:
+                continue
+                
+            print(f"Consumed log message: {message}")
 
-            for keyword in keywords:
-             if keyword in message:
-              print(f"ALERT: The keyword '{keyword}' was found! \n{message}")
-             logger.warning(f"ALERT: The keyword '{keyword}' was found! \n{message}")
+            # List of outdoor activities we want to monitor
+            activities = ["flyfishing", "hiking", "wildlife encounter", "backpacking", "snowshoeing"]
+
+            # Check if "Colorado" and any activity are in the message
+            if "Colorado" in message:
+                # Look for each activity
+                for activity in activities:
+                    if activity in message:
+                        alert_message = f"ALERT: Found Colorado and {activity} together!\n{message}"
+                        print(alert_message)
+                        logger.warning(alert_message)
 
 #####################################
 # Define main function for this script.
