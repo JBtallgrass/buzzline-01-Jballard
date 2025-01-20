@@ -27,6 +27,9 @@ def process_message(log_file) -> None:
     Args:
         log_file (str): The path to the log file to read.
     """
+    #Keep track of messages we've seen before
+    seen_messages = set()
+
     with open(log_file, "r") as file:
         # Move to the end of the file
         file.seek(0, os.SEEK_END)
@@ -51,10 +54,11 @@ def process_message(log_file) -> None:
             message = line.strip()
             print(f"Consumed log message: {message}")
 
-            # Skip processing if this is an ALERT message (prevents feedback loop)
-            if "ALERT: Found Colorado" in message:
+              # Skip if we've seen this message or if it's an alert message
+            if message in seen_messages or "ALERT:" in message or "WARNING" in message:
                 continue
-                
+
+            seen_messages.add(message)    
             print(f"Consumed log message: {message}")
 
             # List of outdoor activities we want to monitor
@@ -66,7 +70,7 @@ def process_message(log_file) -> None:
                 for activity in activities:
                     if activity in message:
                         alert_message = f"ALERT: Found Colorado and {activity} together!\n{message}"
-                        print(alert_message)
+                        print("🚨 ALERT 🚨: " + alert_message)
                         logger.warning(alert_message)
 
 #####################################
